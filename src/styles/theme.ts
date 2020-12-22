@@ -3,7 +3,10 @@ import { extendTheme } from '@chakra-ui/react'
 import { shade } from 'polished'
 
 export const theme = extendTheme({
-  fonts: {},
+  fonts: {
+    body: 'Roboto, sans-serif',
+    heading: 'Roboto, sans-serif'
+  },
   colors: {
     primary: {
       200: '#7F5FBF',

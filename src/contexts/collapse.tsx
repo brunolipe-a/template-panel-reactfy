@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useState,
   useContext,
@@ -20,7 +20,7 @@ const CollapseContext = createContext<CollapseContextData>(
   {} as CollapseContextData
 )
 
-export const CollapseProvider: React.FC = ({ children }) => {
+export function CollapseProvider({ children }: WithChildren) {
   const [collapse, setCollapse] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -48,7 +48,7 @@ export const CollapseProvider: React.FC = ({ children }) => {
   )
 }
 
-export const useCollapse = (): CollapseContextData => {
+export function useCollapse(): CollapseContextData {
   const context = useContext(CollapseContext)
   return context
 }
