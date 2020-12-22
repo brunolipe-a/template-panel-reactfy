@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BiSun } from 'react-icons/bi'
 import { FaMoon } from 'react-icons/fa'
 
 import {
-  Box,
+  Flex,
   IconButton,
   useBreakpointValue,
   useColorMode,
@@ -17,21 +17,24 @@ export default function PageHeader() {
   const { collapse, toggleCollapse, onOpen } = useCollapse()
   const { colorMode, toggleColorMode } = useColorMode()
   const isBreakpoint = useBreakpointValue({ base: false, lg: true })
+  const borderColor = useColorModeValue('gray.300', 'gray.700')
 
   const handleCollapse = useCallback(() => {
     isBreakpoint ? toggleCollapse() : onOpen()
   }, [isBreakpoint, toggleCollapse, onOpen])
 
   return (
-    <Box
-      d="flex"
+    <Flex
+      position="fixed"
       alignItems="center"
-      maxW="100vw"
-      h="60px"
       borderBottom="1px"
-      paddingLeft={collapse ? 0 : '300px'}
+      borderColor={borderColor}
       bg={useColorModeValue('#fff', '#101924')}
-      transition="padding 400ms"
+      top="0"
+      right="0"
+      left={collapse ? '0' : '260px'}
+      h="55px"
+      transition="left 600ms"
     >
       <IconButton
         aria-label="Toggle Collapse"
@@ -50,6 +53,6 @@ export default function PageHeader() {
         borderRadius="50%"
         _focus={{ boxShadow: 'rgb(150, 100, 250) 0px 0px 4px 0px' }}
       />
-    </Box>
+    </Flex>
   )
 }
